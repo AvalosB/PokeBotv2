@@ -18,7 +18,7 @@ async def fetch_random_pokemon(conn):
 
     # 2. Convert the immutable Record to a mutable dictionary
     pokemon_data = dict(pokemon_record)
-    print(f"Found Pokémon: {pokemon_data.get('name', 'Unknown')}")
+    print(f"Found Pokémon: {pokemon_data.get('identifier', 'Unknown')}")
 
     # --- Fetch Pokémon Sprite ---
     # This assumes a 'pokemon_sprites' table with 'pokemon_id' and 'front_default' columns.

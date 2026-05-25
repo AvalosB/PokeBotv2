@@ -1,0 +1,6 @@
+alembic
+asyncpg
+discord.py
+python-dotenv
+psycopg2-binary
+SQLAlchemy

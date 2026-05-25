@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 # Set up intents to read message content
 intents = discord.Intents.default()
 intents.message_content = True
+intents.members = True
 
 # Initialize the client
 client = discord.Client(intents=intents)
@@ -13,6 +14,14 @@ DISCORD_BOT_TOKEN = 'DISCORD_BOT_TOKEN'
 @client.event
 async def on_ready():
     print(f'Logged in as {client.user} (ID: {client.user.id})')
+    print('------')
+    for guild in client.guilds:
+        print(f"Users in server: '{guild.name}':")
+        # Create a list of members in the server
+        member_list = [f"- {member}" for member in guild.members]
+        # Write the list to the log (console)
+        print("\n".join(member_list))
+        print(f"Total users found in '{guild.name}': {len(member_list)}")
     print('------')
 
 @client.event

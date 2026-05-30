@@ -1,6 +1,6 @@
-alembic
-asyncpg
 discord.py
 python-dotenv
-psycopg2-binary
 SQLAlchemy
+asyncpg
+psycopg2-binary
+alembic

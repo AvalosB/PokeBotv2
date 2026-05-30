@@ -41,13 +41,13 @@ def get_url():
     """Constructs the database URL from environment variables."""
     DB_USER = os.getenv("DB_USERNAME")
     DB_PASS = os.getenv("DB_PASSWORD")
-    DB_HOST = "192.168.0.130" # As requested
-    DB_PORT = "5432"          # As requested
+    DB_HOST = os.getenv("DB_HOST")
+    DB_PORT = os.getenv("DB_PORT") or "5432"
     DB_NAME = os.getenv("DB_NAME")
 
-    if not all([DB_USER, DB_PASS, DB_NAME]):
+    if not all([DB_USER, DB_PASS, DB_NAME, DB_HOST, DB_PORT]):
         raise ValueError(
-            "Database credentials (DB_USERNAME, DB_PASSWORD, DB_NAME) "
+            "Database credentials (DB_HOST, DB_PORT, DB_USERNAME, DB_PASSWORD, DB_NAME) "
             "are not set in the .env file."
         )
     

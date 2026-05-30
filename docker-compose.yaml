@@ -3,8 +3,6 @@ services:
     build: .
     container_name: pokebot
     restart: unless-stopped
-    ports:
-      - "5432:5432"
     environment:
       - DISCORD_BOT_TOKEN
       - DB_HOST

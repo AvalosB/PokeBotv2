@@ -3,6 +3,10 @@ services:
     build: .
     container_name: pokebot
     restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+      - "50000-60000:50000-60000/udp"
 
 volumes: 
   pokebot_data:

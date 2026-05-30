@@ -3,5 +3,10 @@ services:
     build: .
     container_name: pokebot
     restart: unless-stopped
-    env_file:
-      - .env
+    environment:
+      - DISCORD_BOT_TOKEN
+      - DB_HOST
+      - DB_PORT
+      - DB_USERNAME
+      - DB_PASSWORD
+      - DB_NAME

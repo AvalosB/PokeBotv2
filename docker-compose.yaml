@@ -2,8 +2,6 @@ services:
   bot:
     build: .
     container_name: pokebot
-    env_file:
-      - .env
     restart: unless-stopped
 
 volumes: 

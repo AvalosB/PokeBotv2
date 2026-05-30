@@ -7,7 +7,8 @@ def check_and_install_packages():
         'discord': 'discord.py',
         'dotenv': 'python-dotenv',
         'sqlalchemy': 'SQLAlchemy',
-        'asyncpg': 'asyncpg'
+        'asyncpg': 'asyncpg',
+        'alembic': 'alembic'
     }
     for module_name, package_name in required_packages.items():
         if importlib.util.find_spec(module_name) is None:
@@ -399,9 +400,22 @@ async def on_message(message):
                 await message.channel.send("Uh oh! The attack missed due to an error.")
                 print(f"An error occurred during /attack: {e}")
 
+def run_database_migrations():
+    print("Checking and applying database migrations...")
+    try:
+        from alembic.config import Config
+        from alembic import command
+        alembic_cfg = Config("alembic.ini")
+        command.upgrade(alembic_cfg, "head")
+        print("Database is up to date!")
+    except Exception as e:
+        print(f"Error running migrations: {e}")
+        sys.exit(1)
+
 if __name__ == "__main__":
     token = os.environ.get(DISCORD_BOT_TOKEN)
     if not token:
         print(f"Please set the {DISCORD_BOT_TOKEN} environment variable.")
     else:
+        run_database_migrations()
         client.run(token)

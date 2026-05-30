@@ -1,6 +1,9 @@
 # Use the official Python image with your exact requested version
 FROM python:3.14.4-slim
 
+# Force Python output to be unbuffered so logs appear immediately
+ENV PYTHONUNBUFFERED=1
+
 # Set the working directory inside the container
 WORKDIR /app
 

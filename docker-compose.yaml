@@ -1,20 +1,5 @@
 services:
   bot:
     build: .
-<<<<<<< HEAD
-    container_name: discord-bot
-=======
     container_name: pokebot
->>>>>>> refs/remotes/PokeBotv2/master
     restart: unless-stopped
-    ports:
-      - "80:80"
-      - "443:443"
-<<<<<<< HEAD
-      - "50000-60000:50000-60000/udp"
-=======
-      - "50000-60000:50000-60000/udp"
-
-volumes: 
-  pokebot_data:
->>>>>>> refs/remotes/PokeBotv2/master

@@ -55,7 +55,7 @@ if not all([DB_USER, DB_PASS, DB_NAME, DB_HOST]):
 DATABASE_URL = f"postgresql+asyncpg://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
 
 # Create the async engine and session factory
-engine = create_async_engine(DATABASE_URL)
+engine = create_async_engine(DATABASE_URL, pool_pre_ping=True)
 AsyncSessionLocal = async_sessionmaker(autocommit=False, autoflush=False, bind=engine, expire_on_commit=False)
 
 # --- Cooldowns ---

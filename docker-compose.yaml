@@ -3,3 +3,5 @@ services:
     build: .
     container_name: pokebot
     restart: unless-stopped
+    env_file:
+      - .env

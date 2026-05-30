@@ -32,6 +32,11 @@ target_metadata = Base.metadata
 
 # --------------------
 
+def include_name(name, type_, parent_names):
+    if type_ == "table":
+        return name in target_metadata.tables
+    return True
+
 def get_url():
     """Constructs the database URL from environment variables."""
     DB_USER = os.getenv("DB_USERNAME")
@@ -56,6 +61,7 @@ def run_migrations_offline() -> None:
         target_metadata=target_metadata,
         literal_binds=True,
         dialect_opts={"paramstyle": "named"},
+        include_name=include_name,
     )
 
     with context.begin_transaction():
@@ -75,7 +81,9 @@ def run_migrations_online() -> None:
 
     with connectable.connect() as connection:
         context.configure(
-            connection=connection, target_metadata=target_metadata
+            connection=connection, 
+            target_metadata=target_metadata,
+            include_name=include_name
         )
 
         with context.begin_transaction():

@@ -2,6 +2,7 @@ import datetime
 from sqlalchemy import (
     Column,
     Integer,
+    Boolean,
     String,
     BigInteger,
     DateTime,
@@ -42,6 +43,10 @@ class CaughtPokemon(Base):
     pokemon_sprite_url = Column(String)
     pokemon_types = Column(JSONB) # Stores list of type dictionaries
     assigned_move_details = Column(JSONB) # Stores move details dictionary
+    
+    max_hp = Column(Integer)
+    current_hp = Column(Integer)
+    is_fainted = Column(Boolean, default=False)
 
     caught_at = Column(DateTime, default=datetime.datetime.utcnow)
 

@@ -33,7 +33,7 @@ async def fetch_random_pokemon(conn):
     # and a 'types' table (id, name, damage_class).
     types_records = await conn.fetch(
         """
-        SELECT t.identifier, t.damage_class
+        SELECT t.id AS type_id, t.identifier, t.damage_class
         FROM "types" AS t
         JOIN pokemon_types AS PT ON T.id = PT.type_id
         WHERE PT.pokemon_id = $1

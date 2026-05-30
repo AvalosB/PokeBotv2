@@ -1,3 +1,21 @@
+import sys
+import subprocess
+import importlib.util
+
+def check_and_install_packages():
+    required_packages = {
+        'discord': 'discord.py',
+        'dotenv': 'python-dotenv',
+        'sqlalchemy': 'SQLAlchemy',
+        'asyncpg': 'asyncpg'
+    }
+    for module_name, package_name in required_packages.items():
+        if importlib.util.find_spec(module_name) is None:
+            print(f"Module '{module_name}' not found. Installing '{package_name}'...")
+            subprocess.check_call([sys.executable, "-m", "pip", "install", package_name])
+
+check_and_install_packages()
+
 import discord
 import os
 import random
